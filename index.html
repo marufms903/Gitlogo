@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GitHub-style Logo (HTML + CSS)</title>
+<style>
+  :root {
+    --size: 220px;        /* change this to resize the logo */
+    --bg: #0d1117;        /* badge color (GitHub dark) */
+    --fg: #ffffff;        /* cat color */
+  }
+
+  body {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: #f3f4f6;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+  }
+
+  .github-logo {
+    position: relative;
+    width: var(--size);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: var(--bg);
+    box-shadow: 0 10px 30px rgba(0,0,0,.15), inset 0 0 0 6px rgba(255,255,255,.05);
+  }
+
+  /* Cat head group */
+  .cat {
+    position: absolute;
+    inset: 0;
+    transform: translateY(2%); /* gentle vertical centering tweak */
+  }
+
+  /* Head circle */
+  .head {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 54%;
+    aspect-ratio: 1/1;
+    transform: translate(-50%, -32%);
+    background: var(--fg);
+    border-radius: 50%;
+  }
+
+  /* Muzzle */
+  .muzzle {
+    position: absolute;
+    left: 50%;
+    top: 57%;
+    width: 44%;
+    height: 28%;
+    transform: translate(-50%, -50%);
+    background: var(--fg);
+    border-radius: 50% / 58%;
+  }
+
+  /* Ears */
+  .ear {
+    position: absolute;
+    width: 32%;
+    height: 32%;
+    background: var(--fg);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+  .ear.left  { left: 24%; top: 18%; transform: rotate(-14deg); }
+  .ear.right { right: 24%; top: 18%; transform: rotate(14deg); }
+
+  /* Chin */
+  .chin {
+    position: absolute;
+    left: 50%;
+    top: 72%;
+    width: 22%;
+    height: 9%;
+    transform: translateX(-50%);
+    background: var(--fg);
+    border-radius: 0 0 30px 30px / 0 0 70% 70%;
+  }
+
+  /* Whiskers (subtle) */
+  .whisker {
+    position: absolute;
+    height: 2px;
+    background: var(--fg);
+    opacity: .9;
+  }
+  .w1 { width: 22%; left: 18%; top: 62%; transform: rotate(6deg); }
+  .w2 { width: 20%; left: 18%; top: 67%; transform: rotate(-4deg); }
+  .w3 { width: 22%; right: 18%; top: 62%; transform: rotate(-6deg); }
+  .w4 { width: 20%; right: 18%; top: 67%; transform: rotate(4deg); }
+
+  /* Gentle highlight for badge */
+  .shine {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+      radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,.16), transparent 55%),
+      radial-gradient(90% 90% at 75% 80%, rgba(255,255,255,.07), transparent 60%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  /* Optional subtle drop shadow under the cat to add depth */
+  .cat::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 58%;
+    width: 50%;
+    height: 34%;
+    transform: translate(-50%, -40%);
+    background: radial-gradient(60% 60% at 50% 50%, rgba(0,0,0,.18), transparent 70%);
+    filter: blur(2px);
+  }
+
+  /* Accessibility label off-screen */
+  .sr-only{
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden; clip: rect(1px,1px,1px,1px);
+    white-space: nowrap; border: 0; padding: 0; margin: -1px;
+  }
+</style>
+</head>
+<body>
+  <figure class="github-logo" role="img" aria-labelledby="ghLabel">
+    <span id="ghLabel" class="sr-only">GitHub-style logo: circular badge with cat head silhouette</span>
+    <div class="cat">
+      <div class="ear left"></div>
+      <div class="ear right"></div>
+      <div class="head"></div>
+      <div class="muzzle"></div>
+      <div class="chin"></div>
+
+      <div class="whisker w1"></div>
+      <div class="whisker w2"></div>
+      <div class="whisker w3"></div>
+      <div class="whisker w4"></div>
+    </div>
+    <div class="shine"></div>
+  </figure>
+
+  <!-- Quick instructions on-page (you can remove this block) -->
+  <div style="position:fixed; bottom:14px; left:14px; font-size:14px; color:#374151; background:#ffffff; padding:.6rem .8rem; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,.08)">
+    Change size: open &lt;style&gt; and edit <code>--size</code>. Try <code>--size: 120px;</code>
+  </div>
+</body>
+</html>
